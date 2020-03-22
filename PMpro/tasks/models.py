@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import Manager
+from datetime import datetime, timezone
 
 status_choices = [
     ('Unassigned', 'Unassigned'),
@@ -17,8 +18,15 @@ class Project(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=100, choices=status_choices, default="Unassigned")
 
+    def calculate_days_left_til_deadline(self):
+        now = datetime.now(timezone.utc)
+        days_left = self.deadline - now
+        days = days_left.days
+        return "{} days".format(days)
+
     def __str__(self):
         return "{} - {}".format(self.title, self.description)
+
 
 
 class Task(models.Model):
