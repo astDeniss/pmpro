@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Projects list{% endblock %}
+
+{% block content %}
+    <div class="ml-5">
+        <h1 class="mb-5"> Your projects: </h1>
+        {% for object in object_list %}
+            <ol>
+                <li> <a href="#">{{ object }}</a> </li>
+            </ol>
+        {% endfor %}
+    </div>
+{% endblock content %}
