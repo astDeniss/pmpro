@@ -2,7 +2,7 @@ from django.db import models
 from users.models import Manager
 
 status_choices = [
-    ('N/A', 'Unassigned'),
+    ('Unassigned', 'Unassigned'),
     ('In progress', 'In progress'),
     ('Completed', 'Completed'),
 ]
