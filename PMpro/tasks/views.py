@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 from .models import Project
 from users.models import Manager
+import datetime
 
 
 class ProjectListView(ListView):
