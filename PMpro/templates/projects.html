@@ -6,9 +6,19 @@
     <div class="ml-5">
         <h1 class="mb-5"> Your projects: </h1>
         {% for object in object_list %}
-            <ol>
-                <li> <a href="#">{{ object }}</a> </li>
-            </ol>
+            <div class="row">
+                <div class="col-4">
+                    <ol>
+                        <li> <a href="#">{{ object }}</a> </li>
+                    </ol>
+                </div>
+                <div class="col-3">
+                    <p>Status: <br/> {{ object.status }}</p>
+                </div>
+                <div class="col-3">
+                    <p>Till deadline: <br/> {{ object.calculate_days_left_til_deadline }}</p>
+                </div>
+            </div>
         {% endfor %}
     </div>
 {% endblock content %}
