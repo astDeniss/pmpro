@@ -5,12 +5,16 @@
 {% block content %}
     <div class="ml-5">
         <h1 class="mb-5"> Your projects: </h1>
+        <div class="col-9 mb-5 d-flex flex-row-reverse">
+            <a href="{% url 'add-project' %}" class="btn btn-outline-dark w-10 shadow">ADD NEW</a>
+        </div>
         {% for object in object_list %}
             <div class="row">
+
                 <div class="col-4">
-                    <ol>
+                    <ul>
                         <li> <a href="#">{{ object }}</a> </li>
-                    </ol>
+                    </ul>
                 </div>
                 <div class="col-3">
                     <p>Status: <br/> {{ object.status }}</p>

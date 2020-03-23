@@ -3,7 +3,7 @@ from users.models import Manager
 from datetime import datetime, timezone
 
 status_choices = [
-    ('N/A', 'Unassigned'),
+    ('Unassigned', 'Unassigned'),
     ('In progress', 'In progress'),
     ('Completed', 'Completed'),
 ]
