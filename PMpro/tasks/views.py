@@ -15,18 +15,19 @@ class ProjectListView(ListView):
     def get_queryset(self):
         current_user = self.request.user
         manager_with_current_user = Manager.objects.get(user=current_user)
-        return Project.objects.filter(manager=manager_with_current_user).order_by("created_at")
+        return Project.objects.filter(manager=manager_with_current_user).order_by("deadline")
 
 
 def add_project(request):
     if request.method == "POST":
+        current_user = request.user
+        current_manager = Manager.objects.get(user=current_user)
 
-        form = ProjectForm(request.POST)
+        form = ProjectForm(request.POST, instance=current_manager)  # since manager is a required field- we are
+                                                                    # pre-loding it into the form
         if form.is_valid():
             form.save()
 
-            current_user = request.user
-            current_manager = Manager.objects.get(user=current_user)
             title = form.cleaned_data.get('title')
             description = form.cleaned_data.get('description')
             deadline = form.cleaned_data.get('deadline')

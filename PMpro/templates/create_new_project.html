@@ -4,7 +4,16 @@
 
 {% block content %}
     <div class="ml-5">
-        <h1> Hello </h1>
-        <p>How are YOU?</p>
+
+        <h1 class="mb-5"> Create a new project: </h1>
+
+        <form method="POST" class="post-form">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-default">Save</button>
+
+        </form>
+
     </div>
 {% endblock content %}
