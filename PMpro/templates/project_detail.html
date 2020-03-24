@@ -3,17 +3,25 @@
 {% block title %} PMpro: Project - {{project.title}} {% endblock %}
 
 {% block content %}
+{% load static %}
     <div class="ml-5 mr-5 shadow">
 
         <div class="mt-3 rounded-top border border-light bg-light">
             <div class="p-3">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-6 mb-4">
                         <h2 class="mb-5 text-dark"> Project Info: </h2>
                     </div>
 
                     <div class="col-6">
-                        <h2 class=""> Project Info: </h2>
+                        <div class="mr-5 pr-5">
+                            <a href="#"><img src="{% static 'img/bin.png' %}" class="img-fluid rounded float-right"
+                                             style="width: 50px; height: 50px"></a>
+                        </div>
+                        <div class="text-center">
+                            <a href="#"><img src="{% static 'img/google-analytics.png' %}" class=""
+                             style="width: 50px; height: 50px"></a>
+                        </div>
                     </div>
                 </div>
 
