@@ -21,7 +21,8 @@ class Project(models.Model):
     def calculate_days_left_til_deadline(self):
         now = datetime.now(timezone.utc)
         days_left = self.deadline - now
-        days = days_left.days
+        days = days_left.\
+            days
         return "{} days".format(days)
 
     def __str__(self):

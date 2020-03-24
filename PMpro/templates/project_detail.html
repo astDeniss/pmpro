@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %} PMpro: Project - {{project.title}} {% endblock %}
+
+{% block content %}
+{% load static %}
+    <div class="ml-5 mr-5 shadow">
+
+        <div class="mt-3 rounded-top border border-light bg-light">
+            <div class="p-3">
+                <div class="row">
+                    <div class="col-6 mb-4">
+                        <h2 class="mb-5 text-dark"> Project Info: </h2>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="mr-5 pr-5">
+                            <a href="#"><img src="{% static 'img/bin.png' %}" class="img-fluid rounded float-right"
+                                             style="width: 50px; height: 50px"></a>
+                        </div>
+                        <div class="text-center">
+                            <a href="#"><img src="{% static 'img/google-analytics.png' %}" class=""
+                             style="width: 50px; height: 50px"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4 border-right">
+                        <h3>Title: <br/></h3>
+                        <p>{{project.title}} <br/></p>
+                        <h3 class="mt-5">Description: <br/></h3>
+                        <p>- {{project.description}}</p>
+                    </div>
+
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col-4">
+                                <h4>Manager: <br/></h4>
+                                <p>{{project.manager}} <br/></p>
+                            </div>
+
+                            <div class="col-4">
+                                <h4>Last updated: <br/></h4>
+                                <p>- {{project.last_updated}}</p>
+                            </div>
+
+                            <div class="col-4">
+                                <h4>Status: <br/></h4>
+                                <p>- {{project.status}}</p>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-4">
+                                <h4>Created at: <br/></h4>
+                                <p>- {{project.created_at}} <br/></p>
+                            </div>
+
+                            <div class="col-4">
+                                <h4>Till deadline: <br/></h4>
+                                <p>- {{project.calculate_days_left_til_deadline}}</p>
+                            </div>
+
+                            <div class="col-4">
+                                <h4>Deadline: <br/></h4>
+                                <p>- {{project.deadline}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="rounded-bottom border border-light bg-white pt-4">
+            <div class="p-3">
+                <h2 class="mb-4 text-dark"> Project tasks: </h2>
+                <div class="row">
+
+                    {% for task in project.tasks.all %}
+
+                    <div class="col-3 m-3 p-2 bg-warning border shadow">
+                        <div class="border-dark rounded-circle">
+                        <h4 class="text-center">{{task.id}}</h4>
+                        </div>
+                        <h4 class="text-center font-weight-bold border-bottom">{{task.title}} <br/></h4>
+
+                        <p class="mt-3">- <a href="#" class="text-dark">{{task.description}}</p></a>
+
+                    </div>
+
+
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}

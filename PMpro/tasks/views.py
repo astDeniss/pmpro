@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from .models import Project
 from users.models import Manager
@@ -24,7 +25,7 @@ def add_project(request):
         current_manager = Manager.objects.get(user=current_user)
 
         form = ProjectForm(request.POST, instance=current_manager)  # since manager is a required field- we are
-                                                                    # pre-loding it into the form
+        # pre-loding it into the form
         if form.is_valid():
             form.save()
 
@@ -38,3 +39,10 @@ def add_project(request):
     else:
         form = ProjectForm()
         return render(request, 'create_new_project.html', {'form': form})
+
+
+class ProjectDetailView(DetailView):
+
+    model = Project
+    template_name = 'project_detail.html'
+    context_object_name = 'project'
