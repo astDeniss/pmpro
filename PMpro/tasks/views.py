@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic import DeleteView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from .models import Project
@@ -42,7 +44,12 @@ def add_project(request):
 
 
 class ProjectDetailView(DetailView):
-
     model = Project
     template_name = 'project_detail.html'
     context_object_name = 'project'
+
+
+class ProjectDeleteView(DeleteView):
+    model = Project
+    template_name = 'project_confirm_delete.html'
+    success_url = reverse_lazy('projects-list')
