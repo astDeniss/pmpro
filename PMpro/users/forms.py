@@ -12,6 +12,3 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'first_name', 'last_name','company_name', 'password1', 'password2', )
 
-    def __str__(self):
-        return "{} {}".format(self.username, self.company_name)
-
