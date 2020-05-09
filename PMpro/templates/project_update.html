@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Project update{% endblock %}
+
+{% block content %}
+    <div class="text-left">
+        <form method="post">
+            {% csrf_token %}
+            <h3>Updating: <span class="font-weight-bold">"{{ object.title }}"</span></h3>
+             {{ form.as_p }} 
+             <input type="submit" value="Save"> 
+        </form>
+    </div>
+{% endblock content %}
