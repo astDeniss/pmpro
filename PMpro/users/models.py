@@ -9,5 +9,5 @@ class Manager(models.Model):
     def __str__(self):
         if self.company_name:
             return "{} - ({})".format(self.company_name, self.user)
-        #return "{} {}".format(self.name, self.last_name)
+        
 
