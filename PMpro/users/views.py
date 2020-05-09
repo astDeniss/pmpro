@@ -7,6 +7,10 @@ from django.contrib.auth.models import User
 
 
 def signup_view(request):
+
+    if request.user.is_authenticated:
+        return redirect('index')
+
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():

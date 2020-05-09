@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_user.html' %}
 
 {% block title %}Registration{% endblock %}
 
@@ -12,6 +12,7 @@
       {{ field.label_tag }}<br>
       {{ field }}
       {% if field.help_text %}
+        </br>
         <small style="color: grey">{{ field.help_text }}</small>
       {% endif %}
       {% for error in field.errors %}
