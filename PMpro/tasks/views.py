@@ -53,3 +53,15 @@ class ProjectDeleteView(DeleteView):
     model = Project
     template_name = 'project_confirm_delete.html'
     success_url = reverse_lazy('projects-list')
+
+
+class TaskListView(ListView):
+    model = Project
+    template_name = "tasks.html"
+    paginate_by = 7
+
+    # returns a query_set of projects, where currently logged_in user is set as Manager for the project
+    def get_queryset(self):
+        current_user = self.request.user
+        manager_with_current_user = Manager.objects.get(user=current_user)
+        return Project.objects.filter(manager=manager_with_current_user).order_by("deadline")
