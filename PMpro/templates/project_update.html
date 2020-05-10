@@ -2,8 +2,6 @@
 
 {% block title %}Project update{% endblock %}
 
-
-
 {% block content %}
     <div class="text-left">
         <form method="post">
@@ -11,23 +9,21 @@
             <div class="ml-2">
             <h3>Updating: <span class="font-weight-bold">"{{ object.title }}"</span></h3>
             <div class="row ">
-                    <div class="col-6 ">
-                        <label class="control-label">Title</label>
-                        <input type="text" class="form-control" name="title" id="title" value="{{object.title}}">
+                <div class="col-6 ">
+                    <label class="control-label">Title</label>
+                    <input type="text" class="form-control" name="title" id="title" value="{{object.title}}">
                         
-                        <label class="control-label">Deadline</label>
-                        <input onclick="myFunction()" type="text" class="form-control" name="deadline" id="deadline" onclick="myFunction()" value="{{object.deadline}}">
+                    <label class="control-label">Deadline</label>
+                    <input onclick="myFunction()" type="text" class="form-control" name="deadline" id="deadline" onclick="myFunction()" value="{{object.deadline}}">
 
-                        <label class="control-label">Description</label>
-                        <textarea class="form-control" name="description" rows="6">{{object.description}}</textarea></br>
+                    <label class="control-label">Description</label>
+                    <textarea class="form-control" name="description" rows="6">{{object.description}}</textarea></br>
                     
-                        {{form.status}}</br>
+                    {{form.status}}</br>
 
-                        </br><input type="submit" value="Update"> 
+                    </br><input type="submit" value="Update"> 
                 </div>
-            </div<
-            
-             
+            </div>     
         </form>
     </div>
 
