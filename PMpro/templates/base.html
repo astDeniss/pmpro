@@ -26,11 +26,14 @@
 									<div class="text-center h-75 w-75">
 										<img src="{% static 'img/logo_trans.png' %}" class="img-fluid" alt="Logo"/>
 									</div>
+
 									<ul>
+										<p class="text-white lead mt-4">Hi, {{user.first_name}}!</p>
 										<li class="active"><a href="{% url 'projects-list' %}">Projects</a></li>
 										<li><a href="{% url 'tasks-list' %}">Tasks</a></li>
 										<li><a href="#">Statistics</a></li>
 										<li><a href="#">Settings</a></li>
+										<li><a href="{% url 'logout' %}">LOGOUT</a></li>
 									</ul>
 								</nav>
 							</aside>

@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from .forms import SignUpForm
 from django.shortcuts import render, redirect
 from .models import Manager
@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 
 def signup_view(request):
     if request.user.is_authenticated:
-       return redirect('index')
+        return redirect('index')
 
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -56,3 +56,9 @@ def user_login(request):
             return HttpResponse("Invalid login details given. Go back and try again")
     else:
         return render(request, 'login.html', {})
+
+
+def user_logout(request):
+    logout(request)
+
+    return redirect('index')

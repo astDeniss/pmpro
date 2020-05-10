@@ -8,7 +8,11 @@
 	 height: 100vh;
 	 background: #2D3142;
 	 font-size: 0.65em;
+
 }
+
+
+
  .nav {
 	 position: relative;
 	 margin: 0 15%;
@@ -16,13 +20,16 @@
 	 top: 50%;
 	 transform: translateY(-50%);
 	 font-weight: bold;
+
 }
+
+
  .nav ul {
 	 list-style: none;
 }
  .nav ul li {
 	 position: relative;
-	 margin: 3.2em 0;
+	 margin: 2.5em 0;
 }
  .nav ul li a {
 	 line-height: 5em;
@@ -33,6 +40,7 @@
 	 display: block;
 	 transition: all ease-out 300ms;
 }
+
  .nav ul li.active a {
 	 color: white;
 }
