@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import DeleteView
@@ -7,7 +8,7 @@ from django.views.generic.edit import UpdateView
 from .models import Project
 from users.models import Manager
 from .forms import ProjectForm
-import datetime
+from datetime import datetime, timezone
 
 
 class ProjectListView(ListView):
@@ -56,10 +57,10 @@ class ProjectDeleteView(DeleteView):
     success_url = reverse_lazy('projects-list')
 
 
-class ProjectUpdateView(UpdateView): 
+class ProjectUpdateView(UpdateView):
     model = Project
     template_name = 'project_update.html'
-    fields = ['title','deadline','description','status']
+    fields = ['title', 'deadline', 'description', 'status']
     success_url = reverse_lazy('projects-list')
 
 
@@ -73,3 +74,30 @@ class TaskListView(ListView):
         current_user = self.request.user
         manager_with_current_user = Manager.objects.get(user=current_user)
         return Project.objects.filter(manager=manager_with_current_user).order_by("deadline")
+
+
+def project_analytics(request, pk):
+    try:
+        project = Project.objects.get(pk=pk)
+        total_tasks = 0
+        completed_tasks = 0
+
+        for task in project.tasks.all():
+            if task.status == "Completed":
+                completed_tasks += 1
+            total_tasks += 1
+
+        tasks_left = total_tasks - completed_tasks
+        spent_on_project = datetime.now(timezone.utc) - project.created_at
+        days_spent = spent_on_project.days
+
+    except Project.DoesNotExist:
+        raise Http404("Poll does not exist")
+    return render(request, 'project_analytics.html',
+                  {'project': project,
+                   'total_tasks': total_tasks,
+                   'completed_tasks': completed_tasks,
+                   'tasks_left': tasks_left,
+                   'days_spent': days_spent
+                   }
+                  )

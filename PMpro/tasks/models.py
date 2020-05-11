@@ -28,7 +28,6 @@ class Project(models.Model):
         return "{} - {}".format(self.title, self.description)
 
 
-
 class Task(models.Model):
     priority_choices = [
         ('Low', 'Low'),
