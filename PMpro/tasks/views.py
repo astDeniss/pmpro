@@ -90,6 +90,7 @@ def project_analytics(request, pk):
         tasks_left = total_tasks - completed_tasks
         spent_on_project = datetime.now(timezone.utc) - project.created_at
         days_spent = spent_on_project.days
+        procent_completed = (completed_tasks/total_tasks)*100
 
     except Project.DoesNotExist:
         raise Http404("Poll does not exist")
@@ -98,6 +99,7 @@ def project_analytics(request, pk):
                    'total_tasks': total_tasks,
                    'completed_tasks': completed_tasks,
                    'tasks_left': tasks_left,
-                   'days_spent': days_spent
+                   'days_spent': days_spent,
+                   'procent_completed': procent_completed,
                    }
                   )
