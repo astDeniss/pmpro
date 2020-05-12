@@ -8,7 +8,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', login_required(TemplateView.as_view(template_name='index.html')), name="index"),
+    path('', TemplateView.as_view(template_name='index.html'), name="index"),
     url("", include('tasks.urls')),
     path("", include('users.urls'))
 ]

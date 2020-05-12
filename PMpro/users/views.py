@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 
 def signup_view(request):
     if request.user.is_authenticated:
-        return redirect('index')
+        return redirect('projects-list')
 
     if request.method == 'POST':
         form = SignUpForm(request.POST)
