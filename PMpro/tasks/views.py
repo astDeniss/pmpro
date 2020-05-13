@@ -5,9 +5,9 @@ from django.views.generic import DeleteView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView
-from .models import Project
+from .models import Project, Task
 from users.models import Manager
-from .forms import ProjectForm
+from .forms import ProjectForm, TaskForm
 from datetime import datetime, timezone
 
 
@@ -43,6 +43,28 @@ def add_project(request):
     else:
         form = ProjectForm()
         return render(request, 'create_new_project.html', {'form': form})
+
+
+def add_task(request):
+    project_titles = Project.objects.all()
+    
+    if request.method == "POST": 
+        form = TaskForm(request.POST) 
+        if form.is_valid():
+            form.save()
+            
+            title = form.cleaned_data.get('title')
+            description = form.cleaned_data.get('description')
+            deadline = form.cleaned_data.get('deadline')
+            project = form.cleaned_data.get('project')
+
+            task = Task(title=title, description=description, deadline=deadline, project_id="project")
+            #task.save()
+            return redirect('tasks-list')
+    else:
+        form = TaskForm()
+        args = {'form': form, "project_titles":project_titles}
+        return render(request, 'create_new_task.html', args)
 
 
 class ProjectDetailView(DetailView):

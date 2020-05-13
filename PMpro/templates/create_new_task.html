@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}PMpro: Add New Task{% endblock %}
+
+{% block content %}
+    <div class="ml-5">
+
+        <div class="col-10">
+
+            <form method="POST" class="post-form pt-3 pb-3 bg-light pl-5 mt-5 shadow rounded-lg">
+                {% csrf_token %}
+                <h1 class="mb-5"> Create a new task: </h1>
+                <div class="row">
+                    <div class="col-5">
+
+                        <label class="control-label">Project</label>
+                        <select type="select" class="form-control" name="project" id="project">
+                        
+                        {% for project in project_titles %}
+                             <option value="{{project.id}}">{{project.title}}</option>
+                        {% endfor %}
+                        
+                        </select>
+                        <label class="control-label">Title</label>
+                        <input type="text" class="form-control" name="title" id="title">
+                        <label class="control-label">Deadline</label>
+                        <input type="date" class="form-control" name="deadline" id="deadline" placeholder="format mm/dd/yyyy">
+
+                    </div>
+                    <div class="col-5">
+                        <label class="control-label">* Description</label>
+                        <textarea class="form-control" name="description" rows="4"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-10 text-center">
+                    <input type="submit" class="form-control btn btn-outline-dark w-50 mt-3" value="Create">
+                </div>
+
+            </form>
+        </div>
+    </div>
+{% endblock content %}
