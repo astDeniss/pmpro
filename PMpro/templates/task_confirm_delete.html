@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Delite task{% endblock %}
+
+{% block content %}
+    <div class="mt-5 text-center">
+        <form method="post">{% csrf_token %}
+            <h3>Are you sure you want to delete <span class="font-weight-bold">"{{ object }}"</span>?</h3>
+            <input class="mt-4 btn btn-danger btn-lg" type="submit" value="Confirm">
+        </form>
+    </div>
+{% endblock content %}

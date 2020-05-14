@@ -86,6 +86,19 @@ class ProjectUpdateView(UpdateView):
     success_url = reverse_lazy('projects-list')
 
 
+class TaskUpdateView(UpdateView):
+    model = Task
+    template_name = 'task_update.html'
+    fields = ['title', 'deadline', 'description', 'status']
+    success_url = reverse_lazy('tasks-list')
+
+
+class TaskDeleteView(DeleteView):
+    model = Task
+    template_name = 'task_confirm_delete.html'
+    success_url = reverse_lazy('tasks-list')
+
+
 class TaskListView(ListView):
     model = Project
     template_name = "tasks.html"
