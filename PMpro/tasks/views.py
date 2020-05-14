@@ -58,12 +58,12 @@ def add_task(request):
             deadline = form.cleaned_data.get('deadline')
             project = form.cleaned_data.get('project')
 
-            task = Task(title=title, description=description, deadline=deadline, project_id="project")
-            #task.save()
+            task = Task(title=title, description=description, deadline=deadline, project=project)
+            task.save()
             return redirect('tasks-list')
     else:
         form = TaskForm()
-        args = {'form': form, "project_titles":project_titles}
+        args = {'form': form, "project_titles": project_titles}
         return render(request, 'create_new_task.html', args)
 
 
